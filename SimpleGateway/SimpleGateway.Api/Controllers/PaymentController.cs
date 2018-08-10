@@ -2,7 +2,7 @@
 
 namespace SimpleGateway.Api.Controllers
 {
-    [Route("/api/payment/transaction")]
+    [Route("/api/v1/payment/sale")]
     public class PaymentController : ControllerBase
     {
         [HttpPost]
