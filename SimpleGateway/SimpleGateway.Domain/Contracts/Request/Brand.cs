@@ -1,6 +1,9 @@
 ﻿namespace SimpleGateway.Domain.Contracts.Request
 {
-    public class TransactionRequest
+    public enum Brand
     {
+        VISA,
+        MASTER,
+        ELO
     }
 }
