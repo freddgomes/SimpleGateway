@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SimpleGateway.Api.Flters;
 using SimpleGateway.Domain.Contracts.Request;
+using SimpleGateway.Domain.Contracts.Response;
+using System;
+using System.Net;
 
 namespace SimpleGateway.Api.Controllers
 {
@@ -10,10 +13,19 @@ namespace SimpleGateway.Api.Controllers
         [HttpPost]
         [Route("")]
         [ValidateModelState]
-        public IActionResult Post([FromBody] SalesRequest request)
+        public IActionResult Post([FromHeader] Guid MerchantId, [FromHeader]Guid MerchantKey, [FromBody] SalesRequest request)
         {
-            //TODO: receber merchant id e merchant key por header e validar
-            return Created("", "");
+            //TODO: receber merchant id e merchant key por header
+            //Validar merchant
+            //criar pagamento
+            //retornar status e link de consulta
+            return Created("", new ContractResponse
+            {
+                Message = "Teste",
+                Status = (int)HttpStatusCode.Created,
+                Response = request
+            }
+            );
         }
     }
 }

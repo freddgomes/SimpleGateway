@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGateway.Api", "SimpleGateway.Api\SimpleGateway.Api.csproj", "{8783DBEB-7D2E-4090-9795-BEADC874C28B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGateway.Domain", "SimpleGateway.Domain\SimpleGateway.Domain.csproj", "{BD02B501-7CE9-4ABA-9ADA-2CEDEF0F9A4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGateway.Domain", "SimpleGateway.Domain\SimpleGateway.Domain.csproj", "{BD02B501-7CE9-4ABA-9ADA-2CEDEF0F9A4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGateway.Service", "SimpleGateway.Service\SimpleGateway.Service.csproj", "{6316887B-FD3D-48D1-8302-DF31DD7AC9C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{BD02B501-7CE9-4ABA-9ADA-2CEDEF0F9A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD02B501-7CE9-4ABA-9ADA-2CEDEF0F9A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD02B501-7CE9-4ABA-9ADA-2CEDEF0F9A4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6316887B-FD3D-48D1-8302-DF31DD7AC9C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6316887B-FD3D-48D1-8302-DF31DD7AC9C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6316887B-FD3D-48D1-8302-DF31DD7AC9C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6316887B-FD3D-48D1-8302-DF31DD7AC9C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,7 +6,9 @@ namespace SimpleGateway.Domain.Contracts.Request
     {
         [Required]
         public string MerchantOrderId { get; set; }
+        [Required]
         public Customer Customer { get; set; }
+        [Required]
         public Payment Payment { get; set; }
     }
 }
