@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimpleGateway.Domain
+namespace SimpleGateway.Domain.Entities
 {
     public class Merchant
     {
@@ -12,18 +12,5 @@ namespace SimpleGateway.Domain
         public bool FraudAnalysis { get; set; }
         public Acquirer DefaultAcquirer { get; set; }
         public MerchantConfiguration Configuration { get; set; }
-    }
-
-    public class MerchantConfiguration
-    {
-        public Guid MerchantId { get; set; }
-        public int Brand { get; set; }
-        public int Acquirer { get; set; }
-    }
-
-    public enum Acquirer
-    {
-        CIELO = 0,
-        STONE = 1
     }
 }

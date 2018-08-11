@@ -1,31 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SimpleGateway.Api.Factory;
 using SimpleGateway.Api.Flters;
 using SimpleGateway.Domain.Contracts.Request;
-using SimpleGateway.Domain.Contracts.Response;
+using SimpleGateway.Domain.Services;
 using System;
-using System.Net;
 
 namespace SimpleGateway.Api.Controllers
 {
     [Route("/api/v1/payment/sales")]
     public class SalesController : ControllerBase
     {
+
+        public readonly ISalesService SalesService;
+
+        public SalesController(ISalesService salesService)
+        {
+            SalesService = salesService ?? throw new ArgumentNullException(nameof(salesService));
+        }
+
         [HttpPost]
         [Route("")]
         [ValidateModelState]
-        public IActionResult Post([FromHeader] Guid MerchantId, [FromHeader]Guid MerchantKey, [FromBody] SalesRequest request)
+        public IActionResult Post([FromHeader] Guid merchantId, [FromHeader]Guid merchantKey, [FromBody] SalesRequest request)
         {
-            //TODO: receber merchant id e merchant key por header
-            //Validar merchant
-            //criar pagamento
-            //retornar status e link de consulta
-            return Created("", new ContractResponse
-            {
-                Message = "Teste",
-                Status = (int)HttpStatusCode.Created,
-                Response = request
-            }
-            );
+            return CommandResultFactory.GetResult(SalesService.CreatePayment(merchantId, merchantKey, request));
         }
     }
 }

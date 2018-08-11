@@ -10,7 +10,6 @@ namespace SimpleGateway.Domain.Contracts.Response
         public bool Capture { get; set; }
         public bool Authenticate { get; set; }
         public Creditcard CreditCard { get; set; }
-        public DebitCard DebitCard { get; set; }
         public string AuthenticationUrl { get; set; }
         public string Tid { get; set; }
         public string SoftDescriptor { get; set; }
