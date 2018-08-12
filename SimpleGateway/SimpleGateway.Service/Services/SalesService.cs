@@ -31,7 +31,7 @@ namespace SimpleGateway.Service.Services
             }
             catch (Exception ex)
             {
-                return new ContractResponse().InternalServerError(ex.Message);
+                return new ContractResponse().InternalServerError("An internal error has occurred. Contact API Manager.");
             }
         }
 

@@ -29,9 +29,10 @@ namespace SimpleGateway.Infrastructure.ApiClient
             RestRequest.AddHeader("MerchantId", $"{merchantId.ToString()}");
             RestRequest.AddHeader("MerchantKey", $"{merchantKey}");
             // RestRequest.AddHeader("RequestId", $"{requestId.ToString()}");
+
             RestRequest.AddJsonBody(sales);
 
-            var response = RestClient.Execute<SalesResponse>(RestRequest);
+            var response = RestClient.Execute<object>(RestRequest);
             return new ContractResponse
             {
                 Message = response.Content,
@@ -43,6 +44,12 @@ namespace SimpleGateway.Infrastructure.ApiClient
         private string GetUrl()
         {
             var url = AppSettings.GetConfig("AppSettings:Endpoints:CieloApi");
+            if (string.IsNullOrWhiteSpace(url))
+                throw new InvalidOperationException("Configuration [AppSettings:Endpoints:CieloApi] is invalid");
+
+            if (!url.EndsWith("/"))
+                url = url + "/";
+
             return url;
         }
     }

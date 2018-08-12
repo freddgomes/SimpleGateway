@@ -21,7 +21,7 @@ namespace SimpleGateway.Api.Factory
                 case HttpStatusCode.NotFound:
                     return new NegotiatedContentResult<dynamic>(HttpStatusCode.NotFound, response);
                 case HttpStatusCode.Unauthorized:
-                    return new NegotiatedContentResult<dynamic>(HttpStatusCode.NotFound, response);
+                    return new NegotiatedContentResult<dynamic>(HttpStatusCode.Unauthorized, response);
                 case HttpStatusCode.BadRequest:
                     return new NegotiatedContentResult<dynamic>(HttpStatusCode.BadRequest, response);
                 case HttpStatusCode.Conflict:
