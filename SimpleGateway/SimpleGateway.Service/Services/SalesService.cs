@@ -1,18 +1,22 @@
-﻿using SimpleGateway.Domain.ApiClient;
+﻿using AutoMapper;
+using SimpleGateway.Domain.ApiClient;
 using SimpleGateway.Domain.Contracts.Request;
 using SimpleGateway.Domain.Contracts.Response;
 using SimpleGateway.Domain.Services;
 using System;
+using System.Net;
 
 namespace SimpleGateway.Service.Services
 {
     public class SalesService : ISalesService
     {
         public readonly ICieloClient CieloClient;
+        private readonly IMapper Mapper;
 
-        public SalesService(ICieloClient cieloClient)
+        public SalesService(ICieloClient cieloClient, IMapper mapper)
         {
             CieloClient = cieloClient ?? throw new ArgumentNullException(nameof(cieloClient));
+            Mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         public ContractResponse CreatePayment(Guid merchantId, string merchantKey, SalesRequest sales)
@@ -27,7 +31,15 @@ namespace SimpleGateway.Service.Services
                 //verificar configurações da loja
                 //usar adquirente default
                 //
-                return CieloClient.CreateSale(merchantId, merchantKey, sales);
+                var response = CieloClient.CreateSale(merchantId, merchantKey, sales);
+
+                if (response.Status == HttpStatusCode.Created)
+                {
+                    response.Message = "";
+                    var transaction = Mapper.Map<SalesResponse>(response.Response);
+                }
+
+                return response;
             }
             catch (Exception ex)
             {
