@@ -9,6 +9,10 @@ namespace SimpleGateway.Domain.Contracts.Request
         [Required]
         public int Amount { get; set; }
         public int Installments { get; set; }
+        public string Currency { get; set; }
+        public string Country { get; set; }
+        public bool Capture { get; set; }
+
         [Required]
         public Creditcard CreditCard { get; set; }
     }
@@ -18,7 +22,6 @@ namespace SimpleGateway.Domain.Contracts.Request
         CreditCard,
         DebitCard,
         Boleto
-
     }
 
 }
