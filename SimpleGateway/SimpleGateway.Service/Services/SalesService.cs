@@ -2,6 +2,7 @@
 using SimpleGateway.Domain.ApiClient;
 using SimpleGateway.Domain.Contracts.Request;
 using SimpleGateway.Domain.Contracts.Response;
+using SimpleGateway.Domain.Enum;
 using SimpleGateway.Domain.Services;
 using System;
 using System.Net;
@@ -35,8 +36,8 @@ namespace SimpleGateway.Service.Services
 
                 if (response.Status == HttpStatusCode.Created)
                 {
-                    response.Message = "";
                     var transaction = Mapper.Map<SalesResponse>(response.Response);
+                    response.Message = TransactionalStatusMessage(transaction.Payment.Status);
                 }
 
                 return response;
@@ -50,6 +51,11 @@ namespace SimpleGateway.Service.Services
         private bool MerchantIsValid(Guid merchantId)
         {
             return true;
+        }
+
+        private string TransactionalStatusMessage(int status)
+        {
+            return $"Acquirer transaction status: {(TransactionalStatus)status}";
         }
     }
 }

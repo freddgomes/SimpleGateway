@@ -1,4 +1,4 @@
-﻿namespace SimpleGateway.Domain.Contracts.Request
+﻿namespace SimpleGateway.Domain.Enum
 {
     public enum BrandEnum
     {

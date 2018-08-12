@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleGateway.Domain.Enum;
+using System;
 
 namespace SimpleGateway.Domain.Entities
 {

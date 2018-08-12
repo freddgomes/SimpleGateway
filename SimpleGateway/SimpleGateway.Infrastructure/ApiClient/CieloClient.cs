@@ -28,7 +28,6 @@ namespace SimpleGateway.Infrastructure.ApiClient
             RestRequest.AddHeader("Content-Type", "application/json");
             RestRequest.AddHeader("MerchantId", $"{merchantId.ToString()}");
             RestRequest.AddHeader("MerchantKey", $"{merchantKey}");
-            // RestRequest.AddHeader("RequestId", $"{requestId.ToString()}");
 
             RestRequest.AddJsonBody(sales);
 

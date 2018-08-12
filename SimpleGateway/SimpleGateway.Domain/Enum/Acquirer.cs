@@ -1,4 +1,4 @@
-﻿namespace SimpleGateway.Domain.Entities
+﻿namespace SimpleGateway.Domain.Enum
 {
     public enum Acquirer
     {
