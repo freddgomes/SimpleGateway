@@ -1,16 +1,15 @@
-﻿using SimpleGateway.Domain.Validator;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SimpleGateway.Domain.Contracts.Request
 {
     public class Payment
     {
         [Required]
-        public PaymentType Type { get; set; }
+        public string Type { get; set; }
         [Required]
         public int Amount { get; set; }
         public int Installments { get; set; }
-        [RequiredIf("Type", PaymentType.CreditCard)]
+        [Required]
         public Creditcard CreditCard { get; set; }
     }
 

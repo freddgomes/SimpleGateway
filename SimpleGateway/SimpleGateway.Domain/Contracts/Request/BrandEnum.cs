@@ -1,6 +1,6 @@
 ﻿namespace SimpleGateway.Domain.Contracts.Request
 {
-    public enum Brand
+    public enum BrandEnum
     {
         VISA,
         MASTER,

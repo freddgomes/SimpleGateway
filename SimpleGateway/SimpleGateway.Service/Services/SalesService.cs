@@ -1,26 +1,38 @@
-﻿using SimpleGateway.Domain.Contracts.Request;
+﻿using SimpleGateway.Domain.ApiClient;
+using SimpleGateway.Domain.Contracts.Request;
+using SimpleGateway.Domain.Contracts.Response;
 using SimpleGateway.Domain.Services;
-using SimpleGateway.Domain.ValueObjects;
 using System;
 
 namespace SimpleGateway.Service.Services
 {
     public class SalesService : ISalesService
     {
-        public CommandResult CreatePayment(Guid merchantId, Guid merchantKey, SalesRequest sales)
+        public readonly ICieloClient CieloClient;
+
+        public SalesService(ICieloClient cieloClient)
         {
-            if (!MerchantIsValid(merchantId))
-                return new CommandResult().NotFound("Merchant Not Found");
+            CieloClient = cieloClient ?? throw new ArgumentNullException(nameof(cieloClient));
+        }
+
+        public ContractResponse CreatePayment(Guid merchantId, string merchantKey, SalesRequest sales)
+        {
+            try
+            {
+                if (!MerchantIsValid(merchantId))
+                    return new ContractResponse().NotFound("Merchant Not Found");
 
 
-            //receber dados da loja e da venda
-            //verificar configurações da loja
-            //usar adquirente default
-            //
-
-
-            return new CommandResult().Success(sales);
-
+                //receber dados da loja e da venda
+                //verificar configurações da loja
+                //usar adquirente default
+                //
+                return CieloClient.CreateSale(merchantId, merchantKey, sales);
+            }
+            catch (Exception ex)
+            {
+                return new ContractResponse().InternalServerError(ex.Message);
+            }
         }
 
         private bool MerchantIsValid(Guid merchantId)

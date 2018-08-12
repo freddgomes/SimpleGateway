@@ -13,6 +13,6 @@ namespace SimpleGateway.Domain.Contracts.Request
         [Required]
         public string SecurityCode { get; set; }
         [Required]
-        public Brand Brand { get; set; }
+        public string Brand { get; set; }
     }
 }

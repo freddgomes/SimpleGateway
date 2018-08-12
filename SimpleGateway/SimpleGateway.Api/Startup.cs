@@ -3,8 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using SimpleGateway.Domain.ApiClient;
 using SimpleGateway.Domain.Configuration;
 using SimpleGateway.Domain.Services;
+using SimpleGateway.Infrastructure.ApiClient;
 using SimpleGateway.Service.Services;
 
 namespace SimpleGateway.Api
@@ -22,8 +26,13 @@ namespace SimpleGateway.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<ISalesService, SalesService>();
+            services.AddTransient<ICieloClient, CieloClient>();
             services.AddSingleton<IAppSettings, AppSettings>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

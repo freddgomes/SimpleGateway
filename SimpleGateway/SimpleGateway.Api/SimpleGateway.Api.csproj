@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SimpleGateway.Domain\SimpleGateway.Domain.csproj" />
+    <ProjectReference Include="..\SimpleGateway.Infrastructure\SimpleGateway.Infrastructure.csproj" />
     <ProjectReference Include="..\SimpleGateway.Service\SimpleGateway.Service.csproj" />
   </ItemGroup>
 

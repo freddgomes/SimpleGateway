@@ -1,11 +1,11 @@
 ﻿using SimpleGateway.Domain.Contracts.Request;
-using SimpleGateway.Domain.ValueObjects;
+using SimpleGateway.Domain.Contracts.Response;
 using System;
 
 namespace SimpleGateway.Domain.Services
 {
     public interface ISalesService
     {
-        CommandResult CreatePayment(Guid merchantId, Guid merchantKey, SalesRequest sales);
+        ContractResponse CreatePayment(Guid merchantId, string merchantKey, SalesRequest sales);
     }
 }
