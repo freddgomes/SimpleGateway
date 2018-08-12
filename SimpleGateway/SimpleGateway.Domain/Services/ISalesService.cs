@@ -6,6 +6,6 @@ namespace SimpleGateway.Domain.Services
 {
     public interface ISalesService
     {
-        ContractResponse CreatePayment(Guid merchantId, string merchantKey, SalesRequest sales);
+        ContractResponse CreateSale(Guid merchantId, string merchantKey, SalesRequest sales);
     }
 }

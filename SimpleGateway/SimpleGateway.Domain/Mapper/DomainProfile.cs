@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SimpleGateway.Domain.Contracts.Response;
+using SimpleGateway.Domain.Entities;
 
 namespace SimpleGateway.Domain.Mapper
 {
@@ -7,7 +8,8 @@ namespace SimpleGateway.Domain.Mapper
     {
         public DomainProfile()
         {
-            CreateMap<SalesResponse, object>();
+            CreateMap<object, SalesResponse>();
+            CreateMap<Transaction, SalesResponse>();
         }
     }
 }

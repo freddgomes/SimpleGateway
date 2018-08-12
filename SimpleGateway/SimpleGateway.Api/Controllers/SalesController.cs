@@ -25,9 +25,9 @@ namespace SimpleGateway.Api.Controllers
         public IActionResult Post([FromHeader] Guid merchantId, [FromHeader]string merchantKey, [FromBody] SalesRequest request)
         {
             if (merchantId == default(Guid)) return CommandResultFactory.GetResult(new ContractResponse().BadRequest("MerchantId is Required"));
-            if (string.IsNullOrEmpty(merchantKey)) return CommandResultFactory.GetResult(new ContractResponse().BadRequest("MerchantId is Required"));
+            if (string.IsNullOrEmpty(merchantKey)) return CommandResultFactory.GetResult(new ContractResponse().BadRequest("MerchantKey is Required"));
 
-            return CommandResultFactory.GetResult(SalesService.CreatePayment(merchantId, merchantKey, request));
+            return CommandResultFactory.GetResult(SalesService.CreateSale(merchantId, merchantKey, request));
         }
     }
 }

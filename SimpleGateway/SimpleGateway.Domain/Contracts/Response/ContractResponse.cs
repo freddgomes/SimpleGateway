@@ -25,28 +25,28 @@ namespace SimpleGateway.Domain.Contracts.Response
         public ContractResponse Unauthorized(string message)
         {
             Status = HttpStatusCode.Unauthorized;
-            Message = Message;
+            Message = message;
             return this;
         }
 
         public ContractResponse BadRequest(string message)
         {
             Status = HttpStatusCode.BadRequest;
-            Message = Message;
+            Message = message;
             return this;
         }
 
         public ContractResponse NotFound(string message)
         {
             Status = HttpStatusCode.NotFound;
-            Message = Message;
+            Message = message;
             return this;
         }
 
         public ContractResponse InternalServerError(string message)
         {
             Status = HttpStatusCode.InternalServerError;
-            Message = Message;
+            Message = message;
             return this;
         }
     }

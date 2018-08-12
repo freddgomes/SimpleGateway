@@ -20,24 +20,16 @@ namespace SimpleGateway.Service.Services
             Mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public ContractResponse CreatePayment(Guid merchantId, string merchantKey, SalesRequest sales)
+        public ContractResponse CreateSale(Guid merchantId, string merchantKey, SalesRequest sales)
         {
             try
             {
-                if (!MerchantIsValid(merchantId))
-                    return new ContractResponse().NotFound("Merchant Not Found");
-
-
-                //receber dados da loja e da venda
-                //verificar configurações da loja
-                //usar adquirente default
-                //
                 var response = CieloClient.CreateSale(merchantId, merchantKey, sales);
 
                 if (response.Status == HttpStatusCode.Created)
                 {
-                    var transaction = Mapper.Map<SalesResponse>(response.Response);
-                    response.Message = TransactionalStatusMessage(transaction.Payment.Status);
+                    var saleResponse = Mapper.Map<object, SalesResponse>(response.Response);
+                    response.Message = TransactionalStatusMessage(saleResponse.Payment.Status);
                 }
 
                 return response;
@@ -46,11 +38,6 @@ namespace SimpleGateway.Service.Services
             {
                 return new ContractResponse().InternalServerError("An internal error has occurred. Contact API Manager.");
             }
-        }
-
-        private bool MerchantIsValid(Guid merchantId)
-        {
-            return true;
         }
 
         private string TransactionalStatusMessage(int status)
