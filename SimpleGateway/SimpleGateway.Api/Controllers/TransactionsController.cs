@@ -21,7 +21,7 @@ namespace SimpleGateway.Api.Controllers
         public IActionResult GetTransactions(Guid merchantId)
         {
             if (merchantId == default(Guid) || merchantId == null)
-                return CommandResultFactory.GetResult(new ContractResponse().BadRequest("Invalid parameter"));
+                return CommandResultFactory.GetResult(new ContractResponse().BadRequest("merchantId: Invalid format."));
 
             return CommandResultFactory.GetResult(TransactionsService.GetTransactionsByMerchant(merchantId));
         }
