@@ -39,6 +39,7 @@ namespace SimpleGateway.Service.Services
                     transaction.MerchantId = merchantId;
 
                     TransactionRepository.SaveTransaction(transaction);
+                    saleResponse.GatewayTransactionId = transaction.Id;
                 }
 
                 return response;

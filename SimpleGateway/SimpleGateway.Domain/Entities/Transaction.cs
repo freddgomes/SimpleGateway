@@ -17,9 +17,9 @@ namespace SimpleGateway.Domain.Entities
         public string ProofOfSale { get; set; }
         public string AuthorizationCode { get; set; }
         public string Provider { get; set; }
-        public int Amount { get; set; }
+        public long Amount { get; set; }
         public string ReceivedDate { get; set; }
-        public int CapturedAmount { get; set; }
+        public long CapturedAmount { get; set; }
         public string CapturedDate { get; set; }
         public int Status { get; set; }
         public bool IsSplitted { get; set; }

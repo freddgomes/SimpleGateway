@@ -29,6 +29,7 @@ namespace SimpleGateway.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<ISalesService, SalesService>();
+            services.AddTransient<ITransactionsService, TransactionsService>();
             services.AddTransient<ITransactionRepository, TransactionRepository>();
             services.AddTransient<ICieloClient, CieloClient>();
             services.AddSingleton<IAppSettings, AppSettings>();
