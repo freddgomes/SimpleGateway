@@ -21,4 +21,4 @@ Também será feita integração com serviço de antifraude.
 - Acesse o link e crie as credenciais necessárias para realizar transações, usando a Cielo: <https://cadastrosandbox.cieloecommerce.cielo.com.br/>
 - Junto ao projeto, existe um arquivo que poder importado no Postman. Esse arquivo tem uma coleção com exemplos de requisições que podem ser realizadas na API.
 - As Credenciais geradas pela Adquirente, podem ser usadas na coleção para criar e consultar transação.
-
+- Ao consultar uma transação, informe o identificador da loja (Use o merchant id gerado pela adquirente).
