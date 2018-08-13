@@ -20,8 +20,8 @@ namespace SimpleGateway.Infrastructure.Configuration.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Transaction>()
-                .HasKey(t => t.Id);
+            modelBuilder.Entity<Transaction>(x => x.ToTable("Transactions")
+                .HasKey(t => t.Id));
         }
     }
 }

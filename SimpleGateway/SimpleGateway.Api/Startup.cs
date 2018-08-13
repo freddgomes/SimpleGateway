@@ -8,8 +8,10 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using SimpleGateway.Domain.ApiClient;
 using SimpleGateway.Domain.Configuration;
+using SimpleGateway.Domain.Repository;
 using SimpleGateway.Domain.Services;
 using SimpleGateway.Infrastructure.ApiClient;
+using SimpleGateway.Infrastructure.Repository;
 using SimpleGateway.Service.Services;
 
 namespace SimpleGateway.Api
@@ -27,6 +29,7 @@ namespace SimpleGateway.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<ISalesService, SalesService>();
+            services.AddTransient<ITransactionRepository, TransactionRepository>();
             services.AddTransient<ICieloClient, CieloClient>();
             services.AddSingleton<IAppSettings, AppSettings>();
 

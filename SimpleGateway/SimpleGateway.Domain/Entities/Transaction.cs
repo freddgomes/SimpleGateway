@@ -10,7 +10,6 @@ namespace SimpleGateway.Domain.Entities
         public string CustomerName { get; set; }
         public int ServiceTaxAmount { get; set; }
         public int Installments { get; set; }
-        public int Interest { get; set; }
         public bool Capture { get; set; }
         public bool Authenticate { get; set; }
         public bool Recurrent { get; set; }

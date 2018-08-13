@@ -1,10 +1,11 @@
 ﻿using SimpleGateway.Domain.Configuration;
 using SimpleGateway.Domain.Entities;
+using SimpleGateway.Domain.Repository;
 using SimpleGateway.Infrastructure.Configuration.Context;
 
 namespace SimpleGateway.Infrastructure.Repository
 {
-    public class TransactionRepository
+    public class TransactionRepository : ITransactionRepository
     {
         private TransactionDbContext _db;
         private readonly IAppSettings AppSettings;

@@ -31,7 +31,7 @@ namespace SimpleGateway.Infrastructure.ApiClient
 
             RestRequest.AddJsonBody(sales);
 
-            var response = RestClient.Execute<object>(RestRequest);
+            var response = RestClient.Execute<SalesResponse>(RestRequest);
             return new ContractResponse
             {
                 Message = response.Content,
