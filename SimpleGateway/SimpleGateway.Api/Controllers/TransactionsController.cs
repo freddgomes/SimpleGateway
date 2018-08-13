@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SimpleGateway.Api.Factory;
+using SimpleGateway.Domain.Contracts.Response;
 using SimpleGateway.Domain.Services;
 using System;
 
@@ -19,6 +20,9 @@ namespace SimpleGateway.Api.Controllers
         [Route("{merchantId}")]
         public IActionResult GetTransactions(Guid merchantId)
         {
+            if (merchantId == default(Guid) || merchantId == null)
+                return CommandResultFactory.GetResult(new ContractResponse().BadRequest("Invalid parameter"));
+
             return CommandResultFactory.GetResult(TransactionsService.GetTransactionsByMerchant(merchantId));
         }
     }
