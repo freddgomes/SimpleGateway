@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "89a7f290-5b24-4dd4-ab45-55d9f3939f9f",
+		"name": "SimpleGateway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Sale",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "MerchantId",
+						"value": "ad24698f-b985-4a44-989f-a5a9b321eaf3"
+					},
+					{
+						"key": "MerchantKey",
+						"value": "PHSDUUPKNSMPDQCVLZLIEICFBIXSOSGCUHGRUUCJ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"MerchantOrderId\":\"201411170565673\",\r\n   \"Customer\":{\r\n      \"Name\":\"Comprador Jack\"\r\n   },\r\n   \"Payment\":{\r\n     \"Type\":\"CreditCard\",\r\n     \"Amount\":15700,\r\n     \"Installments\":1,\r\n     \"SoftDescriptor\":\"123456789ABCD\",\r\n     \"CreditCard\":{\r\n         \"CardNumber\":\"1234123412341231\",\r\n         \"Holder\":\"Jack Jones\",\r\n         \"ExpirationDate\":\"12/2030\",\r\n         \"SecurityCode\":\"123\",\r\n         \"Brand\":\"Visa\"\r\n     }\r\n   }\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44345/api/v1/payment/sales",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44345",
+					"path": [
+						"api",
+						"v1",
+						"payment",
+						"sales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get transactions by merchant",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://localhost:44345/api/v1/transactions/ad24698f-b985-4a44-989f-a5a9b321eaf3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44345",
+					"path": [
+						"api",
+						"v1",
+						"transactions",
+						"ad24698f-b985-4a44-989f-a5a9b321eaf3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
