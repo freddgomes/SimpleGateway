@@ -1,3 +1,5 @@
+Use SimpleGatewayDb
+GO
 CREATE TABLE [Log] (
  
    [Id] int IDENTITY(1,1) NOT NULL,
@@ -12,4 +14,5 @@ CREATE TABLE [Log] (
    CONSTRAINT [PK_Log] 
      PRIMARY KEY CLUSTERED ([Id] ASC) 
  
-) 
+)
+GO
