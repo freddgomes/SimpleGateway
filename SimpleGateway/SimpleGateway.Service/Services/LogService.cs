@@ -6,9 +6,9 @@ namespace SimpleGateway.Service.Services
 {
     public class LogService : ILogService
     {
-        public void Info(string message, object obj)
+        public void Info(string message)
         {
-            Log.Information(message, obj);
+            Log.Information(message);
         }
 
         public void Error(Exception ex, string message)

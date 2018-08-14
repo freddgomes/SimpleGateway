@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using SimpleGateway.Domain.ApiClient;
 using SimpleGateway.Domain.Contracts.Request;
 using SimpleGateway.Domain.Contracts.Response;
@@ -16,7 +17,7 @@ namespace SimpleGateway.Service.Services
         public readonly ICieloClient CieloClient;
         public readonly ITransactionRepository TransactionRepository;
         private readonly IMapper Mapper;
-        private readonly ILogService LogService;
+        public readonly ILogService LogService;
 
         public SalesService(ICieloClient cieloClient, IMapper mapper, ITransactionRepository transactionRepository, ILogService logService)
         {
@@ -42,7 +43,8 @@ namespace SimpleGateway.Service.Services
 
                     TransactionRepository.SaveTransaction(transaction);
                     saleResponse.GatewayTransactionId = transaction.Id;
-                    throw new Exception("arara");
+
+                    LogService.Info($"Sale successfully. Sales information: {JsonConvert.SerializeObject(transaction)}");
                 }
 
                 return response;
