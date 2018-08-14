@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Serilog;
 using SimpleGateway.Domain.ApiClient;
 using SimpleGateway.Domain.Configuration;
 using SimpleGateway.Domain.Repository;
@@ -30,6 +31,7 @@ namespace SimpleGateway.Api
         {
             services.AddTransient<ISalesService, SalesService>();
             services.AddTransient<ITransactionsService, TransactionsService>();
+            services.AddTransient<ILogService, LogService>();
             services.AddTransient<ITransactionRepository, TransactionRepository>();
             services.AddTransient<ICieloClient, CieloClient>();
             services.AddSingleton<IAppSettings, AppSettings>();
@@ -45,6 +47,8 @@ namespace SimpleGateway.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            ConfigureLog();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -56,6 +60,13 @@ namespace SimpleGateway.Api
 
             app.UseHttpsRedirection();
             app.UseMvc();
+        }
+
+        private void ConfigureLog()
+        {
+            Log.Logger = new LoggerConfiguration()
+               .ReadFrom.Configuration(Configuration)
+               .CreateLogger();
         }
     }
 }
