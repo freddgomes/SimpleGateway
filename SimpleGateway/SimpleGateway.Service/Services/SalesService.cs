@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using SimpleGateway.Domain.ApiClient;
 using SimpleGateway.Domain.Contracts.Request;
 using SimpleGateway.Domain.Contracts.Response;
@@ -16,12 +17,14 @@ namespace SimpleGateway.Service.Services
         public readonly ICieloClient CieloClient;
         public readonly ITransactionRepository TransactionRepository;
         private readonly IMapper Mapper;
+        public readonly ILogService LogService;
 
-        public SalesService(ICieloClient cieloClient, IMapper mapper, ITransactionRepository transactionRepository)
+        public SalesService(ICieloClient cieloClient, IMapper mapper, ITransactionRepository transactionRepository, ILogService logService)
         {
             CieloClient = cieloClient ?? throw new ArgumentNullException(nameof(cieloClient));
             Mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             TransactionRepository = transactionRepository ?? throw new ArgumentNullException(nameof(transactionRepository));
+            LogService = logService ?? throw new ArgumentNullException(nameof(logService));
         }
 
         public ContractResponse CreateSale(Guid merchantId, string merchantKey, SalesRequest sales)
@@ -40,12 +43,15 @@ namespace SimpleGateway.Service.Services
 
                     TransactionRepository.SaveTransaction(transaction);
                     saleResponse.GatewayTransactionId = transaction.Id;
+
+                    LogService.Info($"Sale successfully. Sales information: {JsonConvert.SerializeObject(transaction)}");
                 }
 
                 return response;
             }
             catch (Exception ex)
             {
+                LogService.Error(ex, "An error occurred while performing a transaction.");
                 return new ContractResponse().InternalServerError("An internal error has occurred. Contact API Manager.");
             }
         }

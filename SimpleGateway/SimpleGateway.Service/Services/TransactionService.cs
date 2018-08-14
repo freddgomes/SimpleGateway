@@ -8,10 +8,12 @@ namespace SimpleGateway.Service.Services
     public class TransactionsService : ITransactionsService
     {
         public readonly ITransactionRepository TransactionRepository;
+        public readonly ILogService LogService;
 
-        public TransactionsService(ITransactionRepository transactionRepository)
+        public TransactionsService(ITransactionRepository transactionRepository, ILogService logService)
         {
             TransactionRepository = transactionRepository ?? throw new ArgumentNullException(nameof(transactionRepository));
+            LogService = logService ?? throw new ArgumentNullException(nameof(logService));
         }
         public ContractResponse GetTransactionsByMerchant(Guid merchantId)
         {
@@ -22,6 +24,7 @@ namespace SimpleGateway.Service.Services
             }
             catch (Exception ex)
             {
+                LogService.Error(ex, $"There was an error fetching transactions for the merchant {merchantId}");
                 return new ContractResponse().InternalServerError("An internal error has occurred. Contact API Manager.");
             }
 
